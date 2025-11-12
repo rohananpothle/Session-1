@@ -141,3 +141,122 @@ Data dashboards are vital for business for several reasons:
 5. Predictive Analysis
 6. Reduce time spent building reports
 7. Reduce human error.
+
+# Visualizations:
+
+# Slicers, Timeline and KPIs:
+
+  1. Add slicers and timelines to the dashboard. Connect them with all neccessary charts to make them dynamic. Slicers can be used as filters to dashboard.
+  2. To filter according to the dates, months or years timelines can be added to the dashborad.
+  3. KPI cards are specific, measurable values that indicates how effectively a company is achieving its key business onjectives and goals.
+
+# Formatting:
+
+  1. Add colors, changes font size, background color, etc to make dashboard more appealing and easy to understand.
+
+# Charts
+
+1. Bar chart: Compare categorical data horizontally (e.g., sales by product).
+2. Clustur chart: Compare multiple measures side-by-side across categories.
+3. Line chart: Show data trends or changes over time (continuous data).
+4. Area Chart: Display trends over time with filled color emphasizing volume.
+5. Stacked area chart : Show part-to-whole contribution over time.
+6. 100 % stacked chart : Compare percentage contribution of categories across a whole.
+7. Line stacked chart : Combine trends (line) and totals (columns).
+8. Line cluster chart : Compare grouped columns with a line trend.
+9. Ribbon chart : Visualize ranking changes across categories over time.
+10. Water fall chart : Show how values increase or decrease sequentially to a final total.
+11. Funner chart : Represent stages in a process (e.g., sales pipeline).
+12. Scatter chart : Show relationship or correlation between two numeric variables.
+13. Pie chart : Display proportion or percentage contribution of categories.
+14. Donut chart : Like a pie chart but with a central space for total or label.
+15. Treemap : Show hierarchical data as nested rectangles sized by value.
+16. MAP : Plot geographic data points using latitude and longitude or country names.
+17. Filled MAP : Color entire regions or areas to represent intensity (choropleth).
+18. Gauge : Display progress toward a single target (e.g., KPI goal).
+19. Card : Show a single numeric value clearly (e.g., total sales).
+20. Multi-Card : Display multiple key metrics side-by-side.
+21. KPI : Highlight goal achievement by showing current value vs. target trend.
+22. Table : Display detailed data with rows and columns for precise comparison.
+
+# Visual Type: Gauge Chart
+Purpose: To compare your current performance (YTD) against a target — for example, previous year’s revenue or a goal value.
+
+<img width="643" height="448" alt="image" src="https://github.com/user-attachments/assets/7d87ccf1-0567-4e4a-ac1f-903c1c419ce7" />
+<img width="223" height="521" alt="image" src="https://github.com/user-attachments/assets/49522236-8641-4c2a-9e13-714995ea8c10" />
+
+
+| Element                  | Meaning                                                              | Example in Your Visual                                          |
+| ------------------------ | -------------------------------------------------------------------- | --------------------------------------------------------------- |
+| **Main Number (Center)** | The **current value** — typically *Sales YTD*.                       | `36.26M` → current year’s YTD revenue                           |
+| **Blue Arc**             | Portion of the gauge filled — it shows **progress toward target**.   | The blue part represents how much of your goal you’ve achieved. |
+| **Grey/White Arc**       | Remaining part to reach your **target**.                             | Still-to-achieve part of the previous year’s YTD or set target. |
+| **Left Label (0.00M)**   | The **minimum value**, often 0 or a baseline.                        |                                                                 |
+| **Right Label (72.52M)** | The **maximum value**, typically your **target or last year’s YTD**. |                                                                 |
+| **Title**                | Describes what the visual represents.                                | “Sales YTD and Previous Year Revenue”                           |
+
+
+
+DAX:
+
+1. HD_Rate_By_Asthma = 
+    VAR TotalAsthma = CALCULATE(COUNTROWS(Heart_disease),ALLSELECTED(Heart_disease),Heart_disease[Asthma]="Yes")
+    VAR HeartDiseaseDueAsthma = CALCULATE(COUNTROWS(Heart_disease),ALLSELECTED(Heart_disease),Heart_disease[Asthma]="Yes",Heart_disease[HeartDisease]="Yes")
+    RETURN
+    IF(
+        TotalAsthma > 0,
+        DIVIDE(HeartDiseaseDueAsthma,TotalAsthma)*100,
+        BLANK()
+    )
+
+2. HD_Rate_By_Diabet = 
+    VAR TotalDiabetic = CALCULATE(COUNTROWS(Heart_disease),ALLSELECTED(Heart_disease),Heart_disease[Diabetic]="Yes")
+    VAR DiabeticHeartDisease = CALCULATE(COUNTROWS(Heart_disease),ALLSELECTED(Heart_disease),Heart_disease[Diabetic]="Yes",Heart_disease[HeartDisease]="Yes")
+    RETURN
+    IF(
+        TotalDiabetic > 0,
+        DIVIDE(DiabeticHeartDisease,TotalDiabetic)*100,
+        BLANK()
+    )
+
+3. HD_Rate_By_KidneyDisease = 
+    VAR TotalKidneyDisease = CALCULATE(COUNTROWS(Heart_disease),ALLSELECTED(Heart_disease),Heart_disease[KidneyDisease]="Yes")
+    VAR HeartDiseaseDueKidneyDisease = CALCULATE(COUNTROWS(Heart_disease),ALLSELECTED(Heart_disease),Heart_disease[KidneyDisease]="Yes",Heart_disease[HeartDisease]="Yes")
+    RETURN
+    IF(
+        TotalKidneyDisease > 0,
+        DIVIDE(HeartDiseaseDueKidneyDisease,TotalKidneyDisease)*100,
+        BLANK()
+    )
+
+4. HD_Rate_By_SkinCancer = 
+    VAR TotalSkinCancer = CALCULATE(COUNTROWS(Heart_disease),ALLSELECTED(Heart_disease),Heart_disease[SkinCancer]="Yes")
+    VAR HeartDiseaseDueSkinCancer = CALCULATE(COUNTROWS(Heart_disease),ALLSELECTED(Heart_disease),Heart_disease[SkinCancer]="Yes",Heart_disease[HeartDisease]="Yes")
+    RETURN
+    IF(
+        TotalSkinCancer > 0,
+        DIVIDE(HeartDiseaseDueSkinCancer,TotalSkinCancer)*100,
+        BLANK()
+    )
+
+5. HD_Rate_By_Stroke = 
+    VAR TotalStroke = CALCULATE(COUNTROWS(Heart_disease),ALLSELECTED(Heart_disease),Heart_disease[Stroke]="Yes")
+    VAR StrokeHeartDisease = CALCULATE(COUNTROWS(Heart_disease),ALLSELECTED(Heart_disease),Heart_disease[Stroke]="Yes",Heart_disease[HeartDisease]="Yes")
+    RETURN
+    IF(
+        TotalStroke > 0,
+        DIVIDE(StrokeHeartDisease,TotalStroke)*100,
+        BLANK()
+    )
+
+6. Heart_Disease_Rate = 
+    VAR Total_pop = COUNTROWS(Heart_disease)
+    VAR Heart_diseased_pop = CALCULATE(COUNTROWS(Heart_disease), Heart_disease[HeartDisease] = "Yes")
+    RETURN
+    IF(
+      Total_pop > 0,
+      DIVIDE(Heart_diseased_pop, Total_pop) * 100,
+      BLANK()
+    )
+   
+7. Count_population = COUNTROWS(Heart_disease)
