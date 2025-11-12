@@ -142,6 +142,8 @@ Data dashboards are vital for business for several reasons:
 6. Reduce time spent building reports
 7. Reduce human error.
 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 # Visualizations:
 
 # Slicers, Timeline and KPIs:
@@ -256,7 +258,17 @@ DAX:
     IF(
       Total_pop > 0,
       DIVIDE(Heart_diseased_pop, Total_pop) * 100,
-      BLANK()
+     BLANK()
     )
    
-7. Count_population = COUNTROWS(Heart_disease)
+8. Count_population = COUNTROWS(Heart_disease)
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Session - 3:
+
+1. What is Dashboard?
+2. What is KPI?
+3. Difference between KPI and Dashboard.
+4. What is tool tip.
+5. Row level security (RLS)?
+6. Deploying or Publishing the dashboard?
